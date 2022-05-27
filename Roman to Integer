@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+         int ans = 0;
+        int box[16];
+        for(int i=0;i<=s.length();i++)
+        {
+            if(s[i] == 'M')
+                box[i] = 1000;
+            else if(s[i] =='D')
+                box[i] = 500;
+            else if(s[i] =='C')
+                box[i] = 100;
+            else if(s[i] =='L')
+                box[i] = 50;
+            else if(s[i] =='X')
+                box[i] = 10;
+            else if(s[i] =='V')
+                 box[i] = 5;
+            else if(s[i] =='I')
+                box[i] = 1;
+            else
+                box[i] =0;
+        }
+        for(int i=0;i<s.length();i++)
+        {
+            if(box[i] >= box[i+1])
+            {
+                ans += box[i];
+            }
+            else
+            {
+                ans -= box[i];
+                ans += box[i+1];
+                i++;
+            }
+        }
+        return ans;
+           }
+};
