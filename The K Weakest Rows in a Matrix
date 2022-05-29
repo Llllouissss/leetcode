@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        int weak = 0;
+        vector <int> ans ={};
+        int keep[100] = {};
+        for(int i = 0;i<mat.size();i++)
+        {
+            for(int y = 0;y<mat[0].size();y++)
+            {
+                keep[i] = keep[i] + mat[i][y];
+            }
+            keep[i] = i*1000 + keep[i];
+            cout<< keep[i]<<endl;
+        }
+        for(int y = 0; y<mat.size();y++)
+        {
+        for(int i = 0;i<mat.size() - 1;i++)
+        {
+            if(keep[i]%1000 > keep[i+1]%1000)
+            {
+                int tmp = 0;
+                tmp = keep[i];
+                keep[i] = keep[i+1];
+                keep[i+1] = tmp;
+            }
+        }
+        }
+        // for(int i = 0;i<size(keep);i++)
+        // {
+        //     cout<<keep[i]<<endl;
+        // }
+        // cout<<keep[1]<<endl;
+        for(int i = 0;i<k;i++)
+        {
+            ans.push_back(keep[i]/1000);
+        }
+        return ans;
+    }
+};
