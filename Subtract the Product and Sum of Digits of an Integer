@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int subtractProductAndSum(int n) {
+        int ans = n;
+        int product = 1;
+        int sum = 0;
+        int length = 1;
+        int box[100000] = {};
+        for(int i = 0;i<100000;i++)
+        {
+            if(n/10 != 0)
+            {
+                length++;
+                n = n/10;
+            }
+            else
+                break;
+        }
+        for(int i = 0;i<length;i++)
+        {
+            box[i] = ans%10;
+            ans = ans/10;
+        }
+        for(int i = 0;i<length;i++)
+        {
+            sum = sum +box[i];
+            product = product *box[i];
+        }
+        return (product - sum);
+        
+    }
+};
