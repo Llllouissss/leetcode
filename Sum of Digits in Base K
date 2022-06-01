@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int sum = 0;
+    int sumBase(int n, int k) {
+        
+        if(n/k < k)
+        {
+            sum = sum + n/k+n%k;
+            return  sum;
+        }
+        else
+        {
+            sum = sum +n%k;
+            return sumBase(n/k,k);
+        }
+        
+    }
+};
