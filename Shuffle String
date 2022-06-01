@@ -1,0 +1,15 @@
+class Solution {
+public:
+    string restoreString(string s, vector<int>& indices) {
+        string ans = {};
+        for(int i = 0;i<s.length();i++)
+        {
+            for(int y = 0;y<s.length();y++)
+            {
+                if(indices[y] == i)
+                    ans = ans + s[y]; 
+            }
+        }
+        return ans;
+    }
+};
