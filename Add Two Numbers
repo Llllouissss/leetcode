@@ -1,0 +1,83 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* a1 = l1;
+        ListNode* a2 = l2;
+        int box1[100] = {};
+        int box2[100] = {};
+        int box3[100] = {};
+        int count1 = 0;
+        int count2 = 0;
+        int count3 = 0;
+   
+        int c1 = 0;
+        int c2 = 0;
+        while(a1 != NULL)
+        {
+            box1[c1] = a1->val;
+            a1 = a1->next;
+            count1++;
+            c1++;
+        }
+        while(a2 != NULL)
+        {
+            box2[c2] = a2->val;
+            a2 = a2->next;
+            count2++;
+            c2++;
+        }
+        
+        if(count1 > count2)
+            count3 =count1;
+        else
+            count3 = count2;
+        
+        bool set = false;
+        for(int i  = 0;i<count3;i++)
+            {
+                box3[i] = box1[i]+box2[i];
+            }
+        for(int i = 0;i<count3-1;i++)
+            {
+                if(box3[i]>9)
+                {
+                    box3[i] = box3[i] -10;
+                    box3[i+1]++;
+                }
+            }
+        if(box3[count3-1] > 9)
+        { 
+            set = true;
+            box3[count3-1] = box3[count3-1] -10;
+            box3[count3]++;
+        }
+        if(set == true)
+            count3++;
+        ListNode* ans = new ListNode;
+        ListNode* tmp =ans;
+        ListNode* final = ans;
+        for(int i = 0;i<count3-1;i++)
+        {
+            ans->next = new ListNode;
+            ans = ans->next;
+        }
+        for(int i = 0;i<count3;i++)
+        {
+            tmp->val = box3[i];
+            tmp = tmp->next;
+        }
+       
+        
+        return final;
+    }
+};
