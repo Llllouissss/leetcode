@@ -1,0 +1,79 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* ans = new ListNode;
+        ListNode*tmp = ans;
+        ListNode* final = ans;
+        ListNode* a1 = list1;
+        ListNode* a2 = list2;
+        ListNode* empty = {};
+        int count = 0;
+        if(list1 == NULL && list2 == NULL)
+            return empty;
+        while(list1 != NULL)
+        {
+            count++;
+            list1 = list1->next;
+        }
+        while(list2 != NULL)
+        {
+            count++;
+            list2 = list2->next;
+        }
+        int* box = new int[count];
+        for(int i = 1;i<count;i++)
+        {
+            ans->next = new ListNode;
+            ans = ans->next;
+        }
+        
+       for(int i = 0;i<count;i++)
+        {
+           if(a1 != NULL && a2 != NULL)
+           {
+                if(a1-> val >= a2-> val)
+                {
+                    box[i] = a2->val;
+                    a2 = a2->next;
+                }
+                else
+                {
+                    box[i] = a1->val;
+                    a1 = a1->next;
+                }
+           }
+           else if(a1 == NULL && a2 == NULL)
+                break;
+           else if(a1 == NULL)
+           {
+               box[i] = a2->val;
+               a2 = a2->next;
+           }
+           else if(a2 == NULL)
+           {
+               box[i] = a1->val;
+               a1 = a1->next;
+           }
+        }
+        for(int y = 0;y<count;y++)
+        {
+            tmp->val = box[y];
+            tmp = tmp->next;
+        }
+       
+        
+        
+        return final;
+        
+    }
+};
