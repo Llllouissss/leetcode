@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string sortSentence(string s) {
+        string ans[9] = {};
+        for(int i = 0;i<s.length();i++)
+        {
+            if(int(s[i])>48 && int(s[i]) < 58)
+            { 
+                int tmp = i;
+                while(tmp > 0 && s[tmp-1] != ' '){tmp--;}
+                while(int(s[tmp]) >=65 && int(s[tmp]) <= 122)
+                {
+                    ans[int(s[i])-49]+=(s[tmp]);
+                    tmp++;
+                }
+            }
+        }
+        for(int i = 0;i<9;i++)
+        {
+            if(ans[i+1] != "")
+                ans[i] += ' ';
+        }
+    
+        string ans1;
+        for(int i = 0;i<9;i++)
+        {
+            ans1 = ans1 + ans[i];
+        }
+        
+        return ans1;
+        
+    }
+};
