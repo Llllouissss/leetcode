@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int minPartitions(string n) {
+        //這題只要數列中出現最大的數字會等於deci-binary之組合數
+        int max_element = 0;
+        for(int i = 0;i<n.size();i++)
+        {
+            max_element = max(max_element,n[i]-'0');
+        }
+        return max_element;
+    }
+};
