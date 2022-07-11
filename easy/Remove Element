@@ -1,0 +1,24 @@
+class Solution {
+public:
+//     void erase(vector<int>& nums,int position)
+//     {
+//         for(int i = position;i<nums.size()-1;i++)
+//         {
+//             nums[position] = nums[position+1];
+//         }
+//         nums.pop_back();
+//     }
+    
+    int removeElement(vector<int>& nums, int val) {
+        int j = 0;
+        for(int i = 0;i<nums.size();i++)
+        {
+            if(nums[i] != val)
+            { 
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;      
+    }
+};
