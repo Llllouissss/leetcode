@@ -1,0 +1,46 @@
+class Solution {
+public:
+    
+    int minimumSum(int num) {
+        int count = 0;
+        int tmp = num;
+        while(num != 0)
+        {
+            num = num/10;
+            count++;
+        }
+        int *ans = new int[count];
+        int nums = 0;
+        while(tmp != 0)
+        {
+            ans[nums] = tmp%10;
+            tmp = tmp/10;
+            nums++;
+        }
+        for(int i = 0;i<count;i++)
+        {
+            for(int x = i;x<count;x++)
+            {
+                if(ans[i] >ans[x])
+                {
+                    int tp = ans[i];
+                    ans[i] = ans[x];
+                    ans[x] = tp;
+                }
+            }
+        }
+        int num1 = 0;int num2 = 0;
+        int number = 0;
+        int degree1 = 1;int degree2 = 1;
+        for(int i = 0;i<count/2;i++)
+        {
+            num1 = num1*degree1 + ans[number];
+            number++;
+            num2 = num2*degree2 + ans[number];
+            number++;
+            degree1*=10;
+            degree2*=10;
+        }
+        return num1+num2;
+    }
+};
