@@ -1,0 +1,40 @@
+//i use merge sort to sort the vector
+class Solution {
+public:
+    void merge_sort(vector<int>& arr,int left,int right){
+        if(right>left){
+            int mid = (left+right)/2;
+            merge_sort(arr,left,mid);
+            merge_sort(arr,mid+1,right);
+            merge(arr,left,mid,right);
+        }
+    }
+    void merge(vector<int>& arr,int left,int mid,int right){
+        const int max = 1000000001;
+        vector<int> left_arr(arr.begin()+left,arr.begin()+mid+1);
+        vector<int> right_arr(arr.begin()+mid+1,arr.begin()+right+1);
+        left_arr.push_back(max);
+        right_arr.push_back(max);
+        int left_id = 0;
+        int right_id = 0;
+        for(int i = left;i<right+1;i++){
+            if (left_arr[left_id] <= right_arr[right_id] ) {
+                arr[i] = left_arr[left_id];
+                left_id++;
+            }
+            else{
+                arr[i] = right_arr[right_id];
+                right_id++;
+            }
+        }
+    }
+    bool containsDuplicate(vector<int>& nums) {
+        merge_sort(nums,0,nums.size()-1);
+        for(int i = 0;i<nums.size()-1;i++){
+            if(nums[i]==nums[i+1])
+                return true;
+        }
+        return false;
+    }
+
+};
