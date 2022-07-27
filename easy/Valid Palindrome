@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int num = s.length() -1;
+        int i = 0;
+        if(s.length() == 1 || s.length() == 0)
+            return true;
+        for(int x = 0;x <s.length();x++){
+            if(s[x] >64 && s[x] <91)
+                s[x] += 32;
+        }
+        while(i < num){
+            while((s[i] >122 || (s[i] < 97 && s[i] >57) || s[i] < 48) && i<num )
+                i++;
+            while((s[num] >122 || (s[num] < 97 && s[num] >57) || s[num] < 48) && i<num )
+                num--;
+            if(i >= num)
+                return true;
+            if(s[i] != s[num] && (i < num))
+                return false;
+            num--;
+            i++;
+        }
+        return true;
+    }
+};
