@@ -1,0 +1,28 @@
+class Solution {
+public:
+    // int small(int *a,int *b){
+    //     return (*a>*b)? *b : *a; 
+    // }
+    // int maxArea(vector<int>& height) {
+    //     int ans = 0;
+    //     for(int i = 0;i<height.size();i++){
+    //         for(int y = i+1;y<height.size();y++){
+    //             int tmp = small(&height[i],&height[y]) * (y - i);
+    //             if(tmp > ans)
+    //                 ans = tmp;
+    //         }
+    //     }
+    //     return ans;
+    // }
+    int maxArea(vector<int>& height) {
+        int maxArea = 0, left = 0, right = height.size() - 1;
+        
+        while (left < right)
+        {
+            maxArea = max(maxArea, (right - left) * min(height[left], height[right]));            
+            height[left] < height[right] ? ++left : --right;
+        }
+        
+        return maxArea;
+    }
+};
