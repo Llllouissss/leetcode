@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int ans = 0;
+        for(int i = 0;i<s.length();i++){
+            int *box = new int[255]();
+            int max_num = 0;
+            for(int y = i;y<s.length();y++){
+                box[s[y]]++;
+                if(box[s[y]] > 1){
+                    break;
+                }
+                max_num++;
+            }
+            delete []box;
+            if(max_num > ans)
+                ans = max_num;
+        }
+        return ans;
+        
+    }
+};
