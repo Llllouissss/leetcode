@@ -32,3 +32,47 @@ public:
             return 0;
     }
 };
+////////////////////////////////////////////////////////////
+/////////////////another solution///////////////////////////
+class Solution {
+public:
+    int count(int x){
+        int len = 0;
+        while(x != 0 ){
+            len++;
+            x = x / 10;
+        }
+        return len;
+    }
+    int *save_inbox(long long int x,int*box){
+        if( x < 0 ){
+            x = x*(-1);
+        }
+        int num = 0;
+        while(x != 0){
+            box[num] = x%10;
+            num++;
+            x = x/10;
+        }
+        return box;
+        
+    }
+    int reverse(long long int x) {
+        long long int ans = 0;
+        int len = count(x);
+        int num = 0;
+        int *box = new int[len]();
+        box = save_inbox(x,box);
+        while(num != len){
+            ans = ans + box[num]*pow(10,len-num-1);
+            num++;
+        }
+        if(ans < pow(2,31)-1 && ans > pow(2,31)*(-1)){
+            if(x < 0)
+                return int(ans*(-1));
+            else
+                return int(ans);
+        }
+        return 0;
+    }
+};
