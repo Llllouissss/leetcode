@@ -93,3 +93,45 @@ public:
         
     }
 };
+
+//another solution!!!
+////////////////////////////////////////////////////////
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int len = nums1.size()+nums2.size();
+        int *box = new int[len]();
+        int i = 0,y = 0,number = 0;
+        double ans;
+        while(i < nums1.size() || y < nums2.size()){
+            if(i == nums1.size()){
+                box[number] = nums2[y];
+                
+                y++;
+            }
+            else if(y == nums2.size()){
+                box[number] = nums1[i];
+                
+                i++;
+            }
+            else if(nums1[i] > nums2[y]){
+                box[number] = nums2[y];
+                
+                y++;
+            }
+            else if(nums2[y] >= nums1[i]){
+                box[number] = nums1[i];
+                
+                i++;
+            }
+            number++;
+        }
+        for(int t = 0;t<len;t++){
+            cout<<box[t]<<" ";
+        }
+        if(len%2 == 1)
+            return double(box[len/2]);
+        else
+            return (double(box[len/2-1])+double(box[len/2]))/2;
+    }
+};
