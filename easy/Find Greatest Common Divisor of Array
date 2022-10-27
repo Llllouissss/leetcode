@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findGCD(vector<int>& nums) {
+        int small = 1000,big = 0;
+        for(int i = 0;i < nums.size();i++){
+            if(small > nums[i])
+                small = nums[i];
+            if(nums[i] > big)
+                big = nums[i];
+        }
+        if(big % small == 0)
+            return small;
+        else{
+            for(int i = 1000;i > 0;i--){
+                if(small >=i && (big%i == 0) && (small%i == 0))
+                    return i;
+            }
+        }
+        return 1;   
+}
+};
