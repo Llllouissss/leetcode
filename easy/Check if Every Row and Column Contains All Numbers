@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool checkValid(vector<vector<int>>& matrix) {
+        int num = (1+matrix.size())*matrix.size()/2;
+        for(int i = 0;i < matrix.size();i++){
+            int *box1 = new int[matrix.size()]();
+            int *box2 = new int[matrix.size()]();
+            for(int y = 0;y < matrix.size();y++){
+                box1[matrix[i][y]-1]++;
+                box2[matrix[y][i]-1]++;
+            }
+            for(int z = 0;z <matrix.size();z++)
+                if(box1[z] > 1 || box2[z] > 1)
+                    return false;
+            delete []box1;
+            delete []box2;
+        }
+        
+        return true;
+        
+    }
+    
+};
